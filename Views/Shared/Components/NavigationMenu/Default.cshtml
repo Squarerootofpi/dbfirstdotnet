@@ -1,0 +1,39 @@
+﻿@*
+    This default cshtml navigationmenu component is just the navigation menu dropdown.
+*@
+@{
+    long selectedteamid;
+
+}
+@model dbfirstdotnet.Models.ViewModels.NavigationMenuViewModel
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter by Team
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item btn-outline-secondary"
+           asp-action="Index"
+           asp-controller="Home"
+           asp-route-teamid="">
+            Clear Filter
+        </a>
+
+        @foreach (Team team in Model.Teams)
+        {
+            long.TryParse(ViewBag.SelectedTeamId, out selectedteamid);
+            @if (team.TeamId == selectedteamid)
+            {
+               // @selectedteamname = team.TeamName;
+            }
+            <a class="dropdown-item  @(team.TeamId == selectedteamid ? "btn-primary" : "btn-outline-secondary")"
+               asp-action="Index"
+               asp-controller="Home"
+               asp-route-teamid="@team.TeamId"
+               asp-route-pageNum="1">
+                @team.TeamName
+            </a>
+        }
+    </div>
+</div>
+<br />
+<div class="alert-heading"> <h5 class="justify-content-center float-right"> @(Model.CurrentTeamName == null ? "No team selected" : Model.CurrentTeamName )</h5></div>

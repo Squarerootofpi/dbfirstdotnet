@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IQueryable<Bowler>
+<table class="table">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Middle Init</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @*This model passed in is the generic model we can use conveniently*@
+        @foreach (var b in Model)
+        {
+        <tr>
+            <td class="card-title">@b.BowlerFirstName</td>
+            <td>@b.BowlerMiddleInit</td>
+            <td>@b.BowlerLastName</td>
+            <td>@b.BowlerAddress</td>
+            <td>@b.BowlerCity</td>
+            <td>@b.BowlerState</td>
+            <td>@b.BowlerZip</td>
+            <td>@b.BowlerPhoneNumber</td>
+        </tr>
+        }
+    </tbody>
+</table>
